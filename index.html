@@ -20,7 +20,7 @@
                 <button class="profile__editor button-hover" type="button"></button>
                 <p class="profile__about">Исследователь океана</p>
             </div>
-                <button class="profile__add-button button-hover"></button>
+            <button class="profile__add-button button-hover"></button>
         </section>
         <section class="cards">
             <article class="card">
@@ -70,17 +70,17 @@
     <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
-    <div class="popup popup__opened">
+    <div class="popup">
         <form class="popup__container">
-            <button class="popup__exit" type="button"></button>
+            <button class="popup__exit button-hover" type="button"></button>
             <h3 class="popup__title">Редактировать профиль</h3>
-            <label class="popup__input">
-                <input class="popup__input" type="text">
-            </label>
-            <label class="popup__input-container">
-                <input class="popup__input" type="text">
-            </label>
+            <div class="popup__inputs">
+                    <input class="popup__input" type="text" name="name" id="name" placeholder="Как вас зовут?">
+                    <input class="popup__input" type="text" name="about" id="about" placeholder="Расскажите о себе :)">
+            </div>
+            <button class="popup__save" type="submit">Сохранить</button>
         </form>
     </div>
+    <script src="scripts/script.js"></script>
 </body>
 </html>
