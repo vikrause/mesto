@@ -15,12 +15,14 @@ function openPopup() {
     profNameInput.value = profName.textContent;
     profAboutInput.value = profAbout.textContent;
     popup.classList.add('popup_opened');
+    console.log("ฅ•ω•ฅ");
 }
 
 
 /****************************Закрытие поп-апа без сохранения данных***********************************/
 function closePopup() {
     popup.classList.remove('popup_opened');
+    console.log("( =ノωヽ=)");
 }
 
 
