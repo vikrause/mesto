@@ -1,0 +1,30 @@
+.profile__editor {
+    background-image: url("../../../images/editButton.svg");
+    background-repeat: no-repeat;
+    background-size: 24px 24px;
+    background-position: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    margin: 0 0 8px 18px;
+    grid-area: edit;
+    align-self: flex-end;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    transition: 0.3s linear;
+}
+
+@media screen and (max-width: 695px) {
+    .profile__editor {
+        margin-left: 10px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .profile__editor {
+        background-size: 18px 18px;
+        width: 18px;
+        height: 18px;
+    }
+}

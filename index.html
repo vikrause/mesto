@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Mesto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="pages/index.css">
+</head>
+<body class="page">
+    <header class="header">
+        <img class="header__logo" src="images/logo/Vector.svg" alt="Логотип">
+    </header>
+    <main class="main">
+        <section class="profile">
+            <div class="profile__container">
+                <img class="profile__avatar" src="images/avatar.png" alt="Ваш аватар">
+                <h1 class="profile__name">Жак-Ив Кусто</h1>
+                <button class="profile__editor button-hover" type="button"></button>
+                <p class="profile__about">Исследователь океана</p>
+            </div>
+            <button class="profile__add-button button-hover"></button>
+        </section>
+        <section class="cards">
+            <article class="card">
+                <img class="card__img" src="images/card1.png" alt="Карачаевск">
+                <div class="card__info">
+                    <h2 class="card__title">Карачаевск</h2>
+                    <button class="card__like button-hover" type="button"></button>
+                </div>
+            </article>
+            <article class="card">
+                <img class="card__img" src="images/card2.png" alt="Гора Эльбрус">
+                <div class="card__info">
+                    <h2 class="card__title">Гора Эльбрус</h2>
+                    <button class="card__like button-hover" type="button"></button>
+                </div>
+            </article>
+            <article class="card">
+                <img class="card__img" src="images/card3.png" alt="Домбай">
+                <div class="card__info">
+                    <h2 class="card__title">Домбай</h2>
+                    <button class="card__like button-hover" type="button"></button>
+                </div>
+            </article>
+            <article class="card">
+                <img class="card__img" src="images/card2.png" alt="Гора Эльбрус">
+                <div class="card__info">
+                    <h2 class="card__title">Гора Эльбрус</h2>
+                    <button class="card__like button-hover" type="button"></button>
+                </div>
+            </article>
+            <article class="card">
+                <img class="card__img" src="images/card3.png" alt="Домбай">
+                <div class="card__info">
+                    <h2 class="card__title">Домбай</h2>
+                    <button class="card__like button-hover" type="button"></button>
+                </div>
+            </article>
+            <article class="card">
+                <img class="card__img" src="images/card1.png" alt="Карачаево-Черкесия">
+                <div class="card__info">
+                    <h2 class="card__title">Карачаево-Черкесия</h2>
+                    <button class="card__like button-hover" type="button"></button>
+                </div>
+            </article>
+        </section>
+    </main>
+    <footer class="footer">
+        <p class="footer__copyright">© 2020 Mesto Russia</p>
+    </footer>
+    <div class="popup">
+        <form class="popup__container">
+            <button class="popup__exit button-hover" type="button"></button>
+            <h3 class="popup__title">Редактировать профиль</h3>
+            <div class="popup__inputs">
+                <input class="popup__input" type="text" name="name" id="name" placeholder="Как вас зовут?">
+                <input class="popup__input" type="text" name="about" id="about" placeholder="Расскажите о себе :)">
+            </div>
+            <button class="popup__save" type="submit">Сохранить</button>
+        </form>
+    </div>
+    <script src="scripts/script.js"></script>
+</body>
+</html>
