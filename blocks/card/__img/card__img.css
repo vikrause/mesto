@@ -1,0 +1,9 @@
+.card__img {
+    max-height: 282px;
+    max-width: 282px;
+    object-fit: cover;
+    object-position: center center;
+    margin: 0;
+    padding: 0;
+    border-radius: 10px 10px 0 0;
+}

@@ -1,0 +1,20 @@
+.profile__container {
+    display: grid;
+    grid-template-areas:
+    'avat name edit'
+    'avat about .';
+    padding: 0;
+    margin: 0;
+    row-gap: 16px;
+}
+
+@media screen and (max-width: 695px) {
+    .profile__container {
+        grid-template-areas:
+        'avat avat'
+        'name edit'
+        'about about';
+        row-gap: 0;
+        margin-bottom: 36px;
+    }
+}
