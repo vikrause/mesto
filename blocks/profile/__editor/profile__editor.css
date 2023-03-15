@@ -9,10 +9,8 @@
     margin: 0 0 8px 18px;
     grid-area: edit;
     align-self: flex-end;
-    cursor: pointer;
     background-color: transparent;
     border: none;
-    transition: 0.3s linear;
 }
 
 @media screen and (max-width: 695px) {

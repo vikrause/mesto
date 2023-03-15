@@ -15,52 +15,52 @@
             <div class="profile__container">
                 <img class="profile__avatar" src="images/avatar.png" alt="Ваш аватар">
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
-                <button class="profile__editor button-hover" type="button"></button>
+                <button class="profile__editor button-hover" type="button" aria-label="Редактировать профиль"></button>
                 <p class="profile__about">Исследователь океана</p>
             </div>
-            <button class="profile__add-button button-hover"></button>
+            <button class="profile__add-button button-hover" type="button" aria-label="Добавить карточку"></button>
         </section>
         <section class="cards">
             <article class="card">
                 <img class="card__img" src="images/card1.png" alt="Карачаевск">
                 <div class="card__info">
                     <h2 class="card__title">Карачаевск</h2>
-                    <button class="card__like button-hover" type="button"></button>
+                    <button class="card__like" type="button" aria-label="Лайк"></button>
                 </div>
             </article>
             <article class="card">
                 <img class="card__img" src="images/card2.png" alt="Гора Эльбрус">
                 <div class="card__info">
                     <h2 class="card__title">Гора Эльбрус</h2>
-                    <button class="card__like button-hover" type="button"></button>
+                    <button class="card__like" type="button" aria-label="Лайк"></button>
                 </div>
             </article>
             <article class="card">
                 <img class="card__img" src="images/card3.png" alt="Домбай">
                 <div class="card__info">
                     <h2 class="card__title">Домбай</h2>
-                    <button class="card__like button-hover" type="button"></button>
+                    <button class="card__like" type="button" aria-label="Лайк"></button>
                 </div>
             </article>
             <article class="card">
                 <img class="card__img" src="images/card2.png" alt="Гора Эльбрус">
                 <div class="card__info">
                     <h2 class="card__title">Гора Эльбрус</h2>
-                    <button class="card__like button-hover" type="button"></button>
+                    <button class="card__like" type="button" aria-label="Лайк"></button>
                 </div>
             </article>
             <article class="card">
                 <img class="card__img" src="images/card3.png" alt="Домбай">
                 <div class="card__info">
                     <h2 class="card__title">Домбай</h2>
-                    <button class="card__like button-hover" type="button"></button>
+                    <button class="card__like" type="button" aria-label="Лайк"></button>
                 </div>
             </article>
             <article class="card">
                 <img class="card__img" src="images/card1.png" alt="Карачаево-Черкесия">
                 <div class="card__info">
                     <h2 class="card__title">Карачаево-Черкесия</h2>
-                    <button class="card__like button-hover" type="button"></button>
+                    <button class="card__like" type="button" aria-label="Лайк"></button>
                 </div>
             </article>
         </section>
@@ -68,17 +68,19 @@
     <footer class="footer">
         <p class="footer__copyright">© 2020 Mesto Russia</p>
     </footer>
-    <div class="popup">
-        <form class="popup__container">
-            <button class="popup__exit button-hover" type="button"></button>
+    <section class="popup">
+        <div class="popup__container">
+            <button class="popup__exit button-hover" type="button" aria-label="Закрыть окно"></button>
             <h3 class="popup__title">Редактировать профиль</h3>
-            <div class="popup__inputs">
-                <input class="popup__input" type="text" name="name" id="name" placeholder="Как вас зовут?">
-                <input class="popup__input" type="text" name="about" id="about" placeholder="Расскажите о себе :)">
-            </div>
-            <button class="popup__save" type="submit">Сохранить</button>
-        </form>
-    </div>
+            <form class="popup__form" name="profile-editor">
+                <div class="popup__inputs">
+                    <input class="popup__input" type="text" name="name" id="name" placeholder="Как вас зовут? :)" required>
+                    <input class="popup__input" type="text" name="about" id="about" placeholder="Расскажите о себе :)" required>
+                </div>
+                <button class="popup__save" type="submit" aria-label="Сохранить новые данные">Сохранить</button>
+            </form>
+        </div>
+    </section>
     <script src="scripts/script.js"></script>
 </body>
 </html>

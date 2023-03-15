@@ -3,7 +3,6 @@
     display: flex;
     justify-content: space-between;
     flex-flow: row nowrap;
-    height: 80px;
     margin: 0;
     padding: 20px 20px 24px;
     column-gap: 30px;

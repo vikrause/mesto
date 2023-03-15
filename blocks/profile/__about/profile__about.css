@@ -1,5 +1,5 @@
 .profile__about {
-    font-family: Inter, sans-serif;
+    font-family: 'Inter', ‘Arial’, sans-serif;
     font-size: 18px;
     line-height: 1.14;
     font-weight: 400;
@@ -7,7 +7,11 @@
     padding: 0;
     margin: 0;
     text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     grid-area: about;
+    max-width: 336px;
 }
 
 @media screen and (max-width: 695px) {

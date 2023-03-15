@@ -13,3 +13,7 @@
     transition: 0.3s linear;
     cursor: pointer;
 }
+
+.card__like:hover {
+    opacity: 0.5;
+}

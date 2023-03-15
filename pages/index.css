@@ -33,7 +33,7 @@
 @import "../blocks/popup/__inputs/popup__inputs.css";
 @import "../blocks/popup/__input/popup__input.css";
 @import "../blocks/popup/__save/popup__save.css";
-@import "../blocks/popup/__opened/popup__opened.css";
+@import "../blocks/popup/_opened/popup_opened.css";
 
 
 
