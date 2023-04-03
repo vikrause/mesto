@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
 const popupImg = document.querySelector('.popup_image');
 const popupImgExitBtn = document.querySelector('.popup__exit_image');
 const popupImgImage = document.querySelector('.popup__image_image');
-const popupImgTitle = document.querySelector('.popup__title_image');
+const popupImgTitle = document.querySelector('.popup__caption_image');
 
 
 popupImgExitBtn.addEventListener('click', function () {
