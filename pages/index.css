@@ -38,9 +38,9 @@
 @import "../blocks/popup/__save/popup__save.css";
 @import "../blocks/popup/_opened/popup_opened.css";
 @import "../blocks/popup/_image/popup_image.css";
-@import "../blocks/popup/_image/__container/popup_image__container.css";
-@import "../blocks/popup/_image/__image/popup_image__image.css";
-@import "../blocks/popup/_image/__title/popup_image__title.css";
+@import "../blocks/popup/__container/_image/popup__container_image.css";
+@import "../blocks/popup/__image/_image/popup__image_image.css";
+@import "../blocks/popup/__title/_image/popup__title_image.css";
 
 
 

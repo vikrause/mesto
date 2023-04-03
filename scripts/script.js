@@ -2,7 +2,7 @@ import { initialCards } from "./card_data.js";
 
 /*********************************Объявление переменных поп-апа*****************************************/
 
-const popupProf = document.querySelector('.popup__profile');
+const popupProf = document.querySelector('.popup_profile');
 const profEditBtn = document.querySelector('.profile__editor');
 const popupExitBtn = document.querySelector('.popup__exit');
 const profName = document.querySelector('.profile__name');
@@ -126,9 +126,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 const popupImg = document.querySelector('.popup_image');
-const popupImgExitBtn = document.querySelector('.popup_image__exit');
-const popupImgImage = document.querySelector('.popup_image__image');
-const popupImgTitle = document.querySelector('.popup_image__title');
+const popupImgExitBtn = document.querySelector('.popup__exit_image');
+const popupImgImage = document.querySelector('.popup__image_image');
+const popupImgTitle = document.querySelector('.popup__title_image');
 
 
 popupImgExitBtn.addEventListener('click', function () {
