@@ -2,6 +2,7 @@
 @import "../vendor/fonts/fonts.css";
 
 @import "../blocks/page/page.css";
+@import "../blocks/main/main.css";
 @import "../blocks/button-hover/button-hover.css";
 
 @import "../blocks/header/header.css";
@@ -36,10 +37,10 @@
 @import "../blocks/popup/__input/popup__input.css";
 @import "../blocks/popup/__save/popup__save.css";
 @import "../blocks/popup/_opened/popup_opened.css";
-
-@import "../blocks/popup-img/__container/popup-img__container.css";
-@import "../blocks/popup-img/__image/popup-img__image.css";
-@import "../blocks/popup-img/__title/popup-img__title.css";
+@import "../blocks/popup/_image/popup_image.css";
+@import "../blocks/popup/_image/__container/popup_image__container.css";
+@import "../blocks/popup/_image/__image/popup_image__image.css";
+@import "../blocks/popup/_image/__title/popup_image__title.css";
 
 
 
