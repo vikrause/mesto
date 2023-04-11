@@ -1,4 +1,5 @@
 import { initialCards } from "./card_data.js";
+import { hasInvalidInput } from "./validate.js";
 
 /*********************************Объявление переменных поп-апа*****************************************/
 
@@ -7,8 +8,8 @@ const profEditBtn = document.querySelector('.profile__editor');
 const popupExitBtn = document.querySelector('.popup__exit');
 const profName = document.querySelector('.profile__name');
 const profAbout = document.querySelector('.profile__about');
-const profNameInput = document.querySelector('#name');
-const profAboutInput = document.querySelector('#about');
+const profNameInput = document.querySelector('#name-input');
+const profAboutInput = document.querySelector('#about-input');
 const formElement = document.querySelector('#profile-editor__form');
 
 
@@ -29,7 +30,6 @@ function updateProf() {
     profAboutInput.value = profAbout.textContent;
     openPopup(popupProf);
 }
-
 
 
 /****************************Закрытие поп-апа с сохранением данных************************************/
@@ -54,8 +54,8 @@ popupExitBtn.addEventListener('click', function () {
 /**************************Объявление переменных поп-апа карточек****************************/
 
 const popupCardAdd = document.querySelector('.popup_card-add');
-const cardAddPlaceNameInpt = document.querySelector('#placeName');
-const cardAddPlaceUrlInpt = document.querySelector('#placeUrl');
+const cardAddPlaceNameInpt = document.querySelector('#placeName-input');
+const cardAddPlaceUrlInpt = document.querySelector('#placeUrl-input');
 const saveAddCardForm = document.querySelector('#add-card__form');
 const profAddCardBtn = document.querySelector('.profile__add-button');
 const exitAddCardBtn = document.querySelector('.popup__exit_card-add');
@@ -103,8 +103,7 @@ function createCard(name, link) {
         evt.target.parentElement.parentElement.remove();
     });
 
-    const cardImg = cardElement.querySelector('.card__img');
-    cardImg.addEventListener('click', function () {
+    cardElementImg.addEventListener('click', function () {
         popupImgImage.src = link;
         popupImgImage.alt = name;
         popupImgTitle.textContent = name;
@@ -134,6 +133,29 @@ const popupImgTitle = document.querySelector('.popup__caption_image');
 popupImgExitBtn.addEventListener('click', function () {
     closePopup(popupImg);
 });
+
+
+/*********************************Закрытие поп-апов по оверлею и esc****************************************/
+
+const popupSection = Array.from(document.querySelectorAll('.popup'));
+
+popupSection.forEach((popupElement) => {
+    popupElement.addEventListener('mousedown', function (evt) {
+        if(evt.target !== evt.currentTarget) return;
+        closePopup(evt.target);
+    });
+});
+
+document.addEventListener('keydown', function (evt) {
+    if(evt.key === "Escape") {
+        const openedPopup = document.querySelector('.popup_opened');
+        if (!openedPopup) return;
+        closePopup(openedPopup);
+    }
+});
+
+
+
 
 
 

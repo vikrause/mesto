@@ -41,6 +41,12 @@
 @import "../blocks/popup/__container/_image/popup__container_image.css";
 @import "../blocks/popup/__image/_image/popup__image_image.css";
 @import "../blocks/popup/__caption/_image/popup__caption_image.css";
+@import "../blocks/popup/__input-error/popup__input-error.css";
+@import "../blocks/popup/__input-error/_active/popup__input-error_active.css";
+@import "../blocks/popup/__input/_type/popup__input_type_error.css";
+
+@import "../blocks/button/_inactive/button_inactive.css";
+
 
 
 

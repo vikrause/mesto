@@ -1,0 +1,12 @@
+.button_inactive {
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 2px;
+    color: #000;
+    opacity: 0.2;
+}
+
+.button_inactive:hover {
+    opacity: 0.2;
+    cursor: auto;
+}

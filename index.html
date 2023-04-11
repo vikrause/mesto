@@ -40,11 +40,13 @@
         <div class="popup__container">
             <button class="popup__exit button-hover" type="button" aria-label="Закрыть окно"></button>
             <h3 class="popup__title">Редактировать профиль</h3>
-            <form class="popup__form" name="profile-editor" id="profile-editor__form">
-                <div class="popup__inputs">
-                    <input class="popup__input" type="text" name="name" id="name" placeholder="Как вас зовут? :)" required>
-                    <input class="popup__input" type="text" name="about" id="about" placeholder="Расскажите о себе :)" required>
-                </div>
+            <form class="popup__form" name="profile-editor" id="profile-editor__form" novalidate>
+                    <div class="popup__inputs">
+                        <input id="name-input" class="popup__input" type="text" name="name" placeholder="Как вас зовут? :)" minlength="2" maxlength="40" required>
+                        <span class="name-input-error popup__input-error"></span>
+                        <input id="about-input" class="popup__input" type="text" name="about" placeholder="Расскажите о себе :)" minlength="2" maxlength="200" required>
+                        <span class="about-input-error popup__input-error"></span>
+                    </div>
                 <button class="popup__save" type="submit" aria-label="Сохранить новые данные">Сохранить</button>
             </form>
         </div>
@@ -53,11 +55,13 @@
         <div class="popup__container popup__container_card-add">
             <button class="popup__exit popup__exit_card-add button-hover" type="button" aria-label="Закрыть окно"></button>
             <h3 class="popup__title">Новое место</h3>
-            <form class="popup__form" name="add-card" id="add-card__form">
-                <div class="popup__inputs">
-                    <input class="popup__input" type="text" name="placeName" id="placeName" placeholder="Название" required>
-                    <input class="popup__input" type="text" name="placeUrl" id="placeUrl" placeholder="Ссылка на картинку" required>
-                </div>
+            <form class="popup__form" name="add-card" id="add-card__form" novalidate>
+                    <div class="popup__inputs">
+                        <input id="placeName-input" class="popup__input" type="text" name="placeName-input" placeholder="Название" minlength="2" maxlength="30" required>
+                        <span class="placeName-input-error popup__input-error"></span>
+                        <input id="placeUrl-input" class="popup__input" type="url" name="placeUrl-input" placeholder="Ссылка на картинку" required>
+                        <span class="placeUrl-input-error popup__input-error"></span>
+                    </div>
                 <button class="popup__save" type="submit" aria-label="Сохранить новые данные">Создать</button>
             </form>
         </div>
