@@ -1,5 +1,5 @@
 import { initialCards } from "./card_data.js";
-import { hasInvalidInput } from "./validate.js";
+import { selectorObject, toggleButtonState } from "./validate.js";
 
 /*********************************Объявление переменных поп-апа*****************************************/
 
@@ -16,12 +16,14 @@ const formElement = document.querySelector('#profile-editor__form');
 /*********************************Открытие поп-апа*****************************************/
 function openPopup(popup) {
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closeByEsc);
     console.log("(╮°-°)╮┳━━┳");
 }
 
 /****************************Закрытие поп-апа без сохранения данных***********************************/
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closeByEsc);
     console.log("( ╯°□°)╯ ┻━━┻");
 }
 
@@ -70,11 +72,14 @@ function handleAddCardFormSubmit(evt) {
 
 
 profAddCardBtn.addEventListener('click', function () {
+    saveAddCardForm.reset();
+    const inputList = Array.from(saveAddCardForm.querySelectorAll(selectorObject.inputSelector));
+    const buttonElement = saveAddCardForm.querySelector(selectorObject.submitButtonSelector);
+    toggleButtonState(inputList, buttonElement, selectorObject.inactiveButtonClass);
     openPopup(popupCardAdd);
 });
 exitAddCardBtn.addEventListener('click', function () {
     closePopup(popupCardAdd);
-    saveAddCardForm.reset();
 });
 saveAddCardForm.addEventListener('submit', handleAddCardFormSubmit);
 
@@ -137,22 +142,21 @@ popupImgExitBtn.addEventListener('click', function () {
 
 /*********************************Закрытие поп-апов по оверлею и esc****************************************/
 
-const popupSection = Array.from(document.querySelectorAll('.popup'));
+const popupSectionList = Array.from(document.querySelectorAll('.popup'));
 
-popupSection.forEach((popupElement) => {
+popupSectionList.forEach((popupElement) => {
     popupElement.addEventListener('mousedown', function (evt) {
         if(evt.target !== evt.currentTarget) return;
         closePopup(evt.target);
     });
 });
 
-document.addEventListener('keydown', function (evt) {
+function closeByEsc(evt) {
     if(evt.key === "Escape") {
         const openedPopup = document.querySelector('.popup_opened');
-        if (!openedPopup) return;
         closePopup(openedPopup);
     }
-});
+}
 
 
 

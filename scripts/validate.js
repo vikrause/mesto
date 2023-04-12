@@ -3,62 +3,65 @@
 
 
 /*********************************Функция проверки поля на валидность**************************************/
-function isValid(formElement, inputElement, SelectorObject) {
+function isValid(formElement, inputElement, selectorObject) {
     if (!inputElement.validity.valid) {
-        showInputError(formElement, inputElement, inputElement.validationMessage, SelectorObject);
+        showInputError(formElement, inputElement, inputElement.validationMessage, selectorObject);
     }else {
-        hideInputError(formElement, inputElement, SelectorObject);
+        hideInputError(formElement, inputElement, selectorObject);
     }
 }
 
 /*********************************Функция показа ошибки поля ввода**************************************/
-function showInputError(formElement, inputElement, errorMessage, SelectorObject) {
+function showInputError(formElement, inputElement, errorMessage, selectorObject) {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add(SelectorObject.inputErrorClass);
-    errorElement.classList.add(SelectorObject.errorClass);
+    inputElement.classList.add(selectorObject.inputErrorClass);
+    errorElement.classList.add(selectorObject.errorClass);
     errorElement.textContent = errorMessage;
 }
 
 /*********************************Функция скрытия ошибки поля ввода**************************************/
-function hideInputError(formElement, inputElement, SelectorObject) {
+function hideInputError(formElement, inputElement, selectorObject) {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove(SelectorObject.inputErrorClass);
-    errorElement.classList.remove(SelectorObject.errorClass);
+    inputElement.classList.remove(selectorObject.inputErrorClass);
+    errorElement.classList.remove(selectorObject.errorClass);
     errorElement.textContent = '';
 }
 
 /**************************Функция добавления слушателя всем полям формы*********************************/
 
-function setEventListeners(formElement, SelectorObject) {
-    const inputList = Array.from(formElement.querySelectorAll(SelectorObject.inputSelector));
-    const buttonElement = formElement.querySelector(SelectorObject.submitButtonSelector);
-    toggleButtonState(inputList, buttonElement, SelectorObject.inactiveButtonClass);
+function setEventListeners(formElement, selectorObject) {
+    const inputList = Array.from(formElement.querySelectorAll(selectorObject.inputSelector));
+    const buttonElement = formElement.querySelector(selectorObject.submitButtonSelector);
+    toggleButtonState(inputList, buttonElement, selectorObject.inactiveButtonClass);
     inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', () => {
-            isValid(formElement, inputElement, SelectorObject);
-            toggleButtonState(inputList, buttonElement, SelectorObject.inactiveButtonClass);
+            isValid(formElement, inputElement, selectorObject);
+            toggleButtonState(inputList, buttonElement, selectorObject.inactiveButtonClass);
         });
     });
 }
 
 /**************************Функция добавления слушателя всем формам*********************************/
 
-export function enableValidation(SelectorObject) {
-    const formList = Array.from(document.querySelectorAll(SelectorObject.formSelector))
+export function enableValidation(selectorObject) {
+    const formList = Array.from(document.querySelectorAll(selectorObject.formSelector))
 
     formList.forEach((formElement) => {
-        setEventListeners(formElement, SelectorObject);
+        setEventListeners(formElement, selectorObject);
     });
 }
-
-enableValidation({
+export const selectorObject = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__save',
     inactiveButtonClass: 'button_inactive',
     inputErrorClass: 'popup__input_type_error',
     errorClass: 'popup__input-error_active'
-});
+}
+
+enableValidation(selectorObject);
+
+
 
 
 /*********************************Функция проверки валидности инпутов****************************************/
@@ -69,7 +72,7 @@ export function hasInvalidInput(inputList) {
 }
 
 /*********************************Функция изменения статуса активности сабмита****************************************/
-function toggleButtonState(inputList, buttonElement, inactiveButtonClass) {
+export function toggleButtonState(inputList, buttonElement, inactiveButtonClass) {
     if(hasInvalidInput(inputList)) {
         buttonElement.classList.add(inactiveButtonClass);
         buttonElement.setAttribute('disabled', '');
