@@ -47,11 +47,13 @@ function handleProfFormSubmit (evt) {
 
 formElement.addEventListener('submit', handleProfFormSubmit);
 profEditBtn.addEventListener('click', updateProf);
-popupExitBtn.addEventListener('click', function () {
-    closePopup(popupProf);
+
+/************************** Слушатели крестика попапа ****************************/
+const closeButtonList = Array.from(document.querySelectorAll('.popup__exit'));
+closeButtonList.forEach((button) => {
+    const popup = button.closest('.popup');
+    button.addEventListener('click', () => closePopup(popup));
 });
-
-
 
 /**************************Объявление переменных поп-апа карточек****************************/
 
@@ -78,9 +80,7 @@ profAddCardBtn.addEventListener('click', function () {
     toggleButtonState(inputList, buttonElement, selectorObject.inactiveButtonClass);
     openPopup(popupCardAdd);
 });
-exitAddCardBtn.addEventListener('click', function () {
-    closePopup(popupCardAdd);
-});
+
 saveAddCardForm.addEventListener('submit', handleAddCardFormSubmit);
 
 
@@ -133,11 +133,6 @@ const popupImg = document.querySelector('.popup_image');
 const popupImgExitBtn = document.querySelector('.popup__exit_image');
 const popupImgImage = document.querySelector('.popup__image_image');
 const popupImgTitle = document.querySelector('.popup__caption_image');
-
-
-popupImgExitBtn.addEventListener('click', function () {
-    closePopup(popupImg);
-});
 
 
 /*********************************Закрытие поп-апов по оверлею и esc****************************************/
