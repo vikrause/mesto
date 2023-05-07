@@ -43,7 +43,7 @@ const formElement = document.querySelector('#profile-editor__form');
 
 /***********************************Валидация форм*****************************************/
 
-export const selectorObject = {
+const selectorObject = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__save',
