@@ -38,12 +38,12 @@ const profName = document.querySelector('.profile__name');
 const profAbout = document.querySelector('.profile__about');
 const profNameInput = document.querySelector('#name-input');
 const profAboutInput = document.querySelector('#about-input');
-const formElement = document.querySelector('#profile-editor__form');
+const profFormElement = document.querySelector('#profile-editor__form');
 
 
 /***********************************Валидация форм*****************************************/
 
-const selectorObject = {
+const validationConfig = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__save',
@@ -52,11 +52,12 @@ const selectorObject = {
     errorClass: 'popup__input-error_active'
 }
 
-const formList = Array.from(document.querySelectorAll(selectorObject.formSelector))
-
+const formList = Array.from(document.querySelectorAll(validationConfig.formSelector))
+const validators = {}
 formList.forEach((formElement) => {
-    const formValid = new FormValidator(selectorObject, formElement);
-    formValid.enableValidation();
+    const formValidator = new FormValidator(validationConfig, formElement);
+    formValidator.enableValidation();
+    validators[formElement.getAttribute('name')] = formValidator;
 });
 
 /*********************************Открытие поп-апа*****************************************/
@@ -70,7 +71,7 @@ export function openPopup(popup) {
 function closePopup(popup) {
     popup.classList.remove('popup_opened');
     document.removeEventListener('keydown', closeByEsc);
-    const popupForm = popup.querySelector(selectorObject.formSelector);
+    const popupForm = popup.querySelector(validationConfig.formSelector);
     if (popupForm) {
         popupForm.reset();
     }
@@ -81,8 +82,7 @@ function updateProf() {
     profNameInput.value = profName.textContent;
     profAboutInput.value = profAbout.textContent;
 
-    profNameInput.dispatchEvent(new Event('input'));
-    profAboutInput.dispatchEvent(new Event('input'));
+    validators[profFormElement.getAttribute('name')].resetValidation();
 
     openPopup(popupProf);
 }
@@ -99,7 +99,7 @@ function handleProfFormSubmit(evt) {
 
 /*********************************Слушатели поп-апа*****************************************/
 
-formElement.addEventListener('submit', handleProfFormSubmit);
+profFormElement.addEventListener('submit', handleProfFormSubmit);
 profEditBtn.addEventListener('click', updateProf);
 
 /************************** Слушатели крестика попапа ****************************/
@@ -120,10 +120,9 @@ const profAddCardBtn = document.querySelector('.profile__add-button');
 
 function handleAddCardFormSubmit(evt) {
     evt.preventDefault();
-    const card = new Card(cardAddPlaceNameInpt.value, cardAddPlaceUrlInpt.value, '#card');
+    const card = new Card(cardAddPlaceNameInpt.value, cardAddPlaceUrlInpt.value, '#card', handleOpenPopup);
     cardSection.prepend(card.generateCard());
     closePopup(popupCardAdd);
-    saveAddCardForm.reset();
 }
 
 
@@ -139,7 +138,7 @@ saveAddCardForm.addEventListener('submit', handleAddCardFormSubmit);
 const cardSection = document.querySelector('.cards');
 document.addEventListener('DOMContentLoaded', function () {
     initialCards.forEach(function (item) {
-        const card = new Card(item.name, item.link, '#card');
+        const card = new Card(item.name, item.link, '#card', handleOpenPopup);
         cardSection.prepend(card.generateCard());
     });
 });
@@ -161,4 +160,16 @@ function closeByEsc(evt) {
         const openedPopup = document.querySelector('.popup_opened');
         closePopup(openedPopup);
     }
+}
+
+function handleOpenPopup(name, link) {
+    const popupImgImage = document.querySelector('.popup__image_image');
+    const popupImgTitle = document.querySelector('.popup__caption_image');
+    const popupImg = document.querySelector('.popup_image');
+
+    popupImgImage.src = link;
+    popupImgImage.alt = name;
+    popupImgTitle.textContent = name;
+
+    openPopup(popupImg);
 }
