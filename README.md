@@ -12,6 +12,7 @@
 * `Nested`
 * `Flexbox`
 * `Grid-Layout`
+* `OOP principles`
 
 
 ### The project was made from this layout:
