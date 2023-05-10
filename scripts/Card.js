@@ -17,9 +17,7 @@ export class Card {
     generateCard() {
         this._element = this._getTemplate();
         this._cardElementImg = this._element.querySelector('.card__img');
-        this._addLikeEventListener();
-        this._removeLikeEventListener();
-        this._setImgPopupEventListener();
+        this._setEventListener();
 
         const cardElementTitle = this._element.querySelector('.card__title');
         cardElementTitle.textContent = this._name;
@@ -30,23 +28,24 @@ export class Card {
 
     }
 
-    _addLikeEventListener() {
-        const cardLikeBtn = this._element.querySelector('.card__like');
-        cardLikeBtn.addEventListener('click', function (evt) {
-            evt.target.classList.toggle('card__like-active');
-        });
+
+    _likeCard(evt) {
+        evt.target.classList.toggle('card__like-active');
     }
 
-    _removeLikeEventListener() {
-        const cardRemoveBtn = this._element.querySelector('.card__remove');
-        cardRemoveBtn.addEventListener('click', function (evt) {
-            evt.target.parentElement.parentElement.remove();
-        });
+    _deleteCard = () => {
+        this._element.remove();
     }
 
-    _setImgPopupEventListener() {
-        this._cardElementImg.addEventListener('click', () => {
-            this._handleOpenPopup(this._name, this._link)
-        });
+    _setEventListener() {
+    const cardLikeBtn = this._element.querySelector('.card__like');
+    cardLikeBtn.addEventListener('click', this._likeCard);
+
+    const cardRemoveBtn = this._element.querySelector('.card__remove');
+    cardRemoveBtn.addEventListener('click', this._deleteCard);
+
+    this._cardElementImg.addEventListener('click', () => {
+        this._handleOpenPopup(this._name, this._link)
+    });
     }
 }
