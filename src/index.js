@@ -1,5 +1,7 @@
-import {Card} from "./Card.js";
-import {FormValidator} from "./FormValidator.js";
+import {Card} from "../scripts/Card.js";
+import {FormValidator} from "../scripts/FormValidator.js";
+import {PopupWithForm} from "../scripts/PopupWithForm.js";
+import {UserInfo} from "../scripts/UserInfo.js";
 
 
 const initialCards = [
@@ -32,16 +34,12 @@ const initialCards = [
 
 /*********************************Объявление переменных поп-апа*****************************************/
 
-const popupProf = document.querySelector('.popup_profile');
-const profEditBtn = document.querySelector('.profile__editor');
-const profName = document.querySelector('.profile__name');
-const profAbout = document.querySelector('.profile__about');
-const profNameInput = document.querySelector('#name-input');
-const profAboutInput = document.querySelector('#about-input');
-const profFormElement = document.querySelector('#profile-editor__form');
+// const popupProf = document.querySelector('.popup_profile');
+
 
 
 /***********************************Валидация форм*****************************************/
+/***********************************НЕ УДАЛЯТЬ*****************************************/
 
 const validationConfig = {
     formSelector: '.popup__form',
@@ -61,7 +59,7 @@ formList.forEach((formElement) => {
 });
 
 /*********************************Открытие поп-апа*****************************************/
-export function openPopup(popup) {
+function openPopup(popup) {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closeByEsc);
     console.log("(╮°-°)╮┳━━┳");
@@ -78,29 +76,29 @@ function closePopup(popup) {
     console.log("( ╯°□°)╯ ┻━━┻");
 }
 
-function updateProf() {
+/*function updateProf() {
     profNameInput.value = profName.textContent;
     profAboutInput.value = profAbout.textContent;
 
     validators[profFormElement.getAttribute('name')].resetValidation();
 
     openPopup(popupProf);
-}
+}*/
 
 
-/****************************Закрытие поп-апа с сохранением данных************************************/
+/****************************Закрытие поп-апа с сохранением данных************************************//*
 function handleProfFormSubmit(evt) {
     evt.preventDefault();
     profName.textContent = profNameInput.value;
     profAbout.textContent = profAboutInput.value;
     closePopup(popupProf);
-}
+}*/
 
 
 /*********************************Слушатели поп-апа*****************************************/
 
-profFormElement.addEventListener('submit', handleProfFormSubmit);
-profEditBtn.addEventListener('click', updateProf);
+// profFormElement.addEventListener('submit', handleProfFormSubmit);
+
 
 /************************** Слушатели крестика попапа ****************************/
 const closeButtonList = Array.from(document.querySelectorAll('.popup__exit'));
@@ -116,6 +114,7 @@ const cardAddPlaceNameInpt = document.querySelector('#placeName-input');
 const cardAddPlaceUrlInpt = document.querySelector('#placeUrl-input');
 const saveAddCardForm = document.querySelector('#add-card__form');
 const profAddCardBtn = document.querySelector('.profile__add-button');
+
 
 
 function handleAddCardFormSubmit(evt) {
@@ -173,3 +172,32 @@ function handleOpenPopup(name, link) {
 
     openPopup(popupImg);
 }
+
+
+/**********************************************************************************************************/
+const userInfo = new UserInfo({nameSelector: '.profile__name', aboutSelector: '.profile__about'});
+
+
+const profilePopup = new PopupWithForm('.popup_profile', (inputValues) => {
+    userInfo.setUserInfo(inputValues.name, inputValues.about);
+    profilePopup.close();
+});
+profilePopup.setEventListeners();
+
+
+
+
+const profEditBtn = document.querySelector('.profile__editor');// нужно внизу
+const profNameInput = document.querySelector('#name-input');// нужно внизу
+const profAboutInput = document.querySelector('#about-input');// нужно внизу
+const profFormElement = document.querySelector('#profile-editor__form');// нужно внизу
+
+profEditBtn.addEventListener('click', () => {
+    const userData = userInfo.getUserInfo();
+    profNameInput.value = userData.name;
+    profAboutInput.value = userData.about;
+
+    validators[profFormElement.getAttribute('name')].resetValidation();
+
+    profilePopup.open();
+});
