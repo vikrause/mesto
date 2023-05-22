@@ -1,0 +1,35 @@
+{
+  "name": "mesto",
+  "version": "0.0.1",
+  "description": "* ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)\r * ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)\r * ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)\r * `Nested`\r * `Flexbox`\r * `Grid-Layout`\r * `OOP principles`\r * `Webpack`",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
+  },
+  "author": "Goncharova Victoria",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "\u001b[A\u001b[B\u0016Learning platform"
+  },
+  "dependencies": {
+    "core-js": "^3.30.2",
+    "jquery": "^3.7.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.21.8",
+    "@babel/preset-env": "^7.21.5",
+    "autoprefixer": "^10.4.14",
+    "babel-loader": "^9.1.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "css-loader": "^6.7.4",
+    "cssnano": "^6.0.1",
+    "html-webpack-plugin": "^5.5.1",
+    "mini-css-extract-plugin": "^2.7.6",
+    "postcss-loader": "^7.3.0",
+    "webpack": "^5.83.1",
+    "webpack-cli": "^5.1.1",
+    "webpack-dev-server": "^4.15.0"
+  }
+}
