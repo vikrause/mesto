@@ -12,7 +12,7 @@
     <main class="main">
         <section class="profile">
             <div class="profile__container">
-                <img class="profile__avatar" src="<%=require('./images/avatar.png')%>" alt="Ваш аватар">
+                <div class="profile__avatar"></div>
                 <h1 class="profile__name">Жак-Ив Кусто</h1>
                 <button class="profile__editor button-hover" type="button" aria-label="Редактировать профиль"></button>
                 <p class="profile__about">Исследователь океана</p>
@@ -25,7 +25,10 @@
                     <img class="card__img" src="#" alt="">
                     <div class="card__info">
                         <h2 class="card__title"></h2>
-                        <button class="card__like" type="button" aria-label="Лайк"></button>
+                        <div class="card__like-box">
+                            <button class="card__like" type="button" aria-label="Лайк"></button>
+                            <p class="card__like-count">0</p>
+                        </div>
                         <button class="card__remove button-hover" type="button" aria-label="Удалить"></button>
                     </div>
                 </article>
@@ -72,5 +75,25 @@
             <h2 class="popup__caption popup__caption_image"></h2>
         </div>
     </section>
+
+    <div class="popup popup_delete-card">
+        <div class="popup__container popup__container_delete-card ">
+            <h2 class="popup__title">Вы уверены?</h2>
+            <button class="popup__save" type="button" aria-label="Сохранить новые данные">Да</button>
+            <button class="popup__exit button-hover" type="button" aria-label="Закрыть окно"></button>
+        </div>
+    </div>
+
+    <div class="popup popup_avatar">
+        <div class="popup__container popup__container_avatar">
+            <h2 class="popup__title">Аватар</h2>
+            <form class="popup__form" name="popup-form-avatar" novalidate>
+                <input class="popup__input" type="url" placeholder="Ссылка на картинку" id="avatar-input" name="avatar-input" value="" required>
+                <span class="avatar-input-error popup__input-error"></span>
+                <button class="popup__save" type="submit" aria-label="Сохранить новые данные">Сохранить</button>
+            </form>
+            <button class="popup__exit button-hover" type="button" aria-label="Закрыть окно"></button>
+        </div>
+    </div>
 </body>
 </html>

@@ -24,6 +24,7 @@
 @import "../blocks/card/__title/card__title.css";
 @import "../blocks/card/__like/card__like.css";
 @import "../blocks/card/__like/card__like-active.css";
+@import "../blocks/card/__like/card__like-count.css";
 @import "../blocks/card/__remove/card__remove.css";
 
 @import "../blocks/footer/footer.css";

@@ -1,6 +1,5 @@
 import Popup from "./Popup.js";
 
-
 export default class PopupWithForm extends Popup {
     constructor(popupSelector, handleFormSubmit) {
         super(popupSelector);
@@ -8,6 +7,7 @@ export default class PopupWithForm extends Popup {
 
         this._popupForm = this._popup.querySelector('.popup__form');
         this._popupFormInputList = this._popupForm.querySelectorAll('.popup__input');
+        this._popupSaveButton = this._popupForm.querySelector('.popup__save');
     }
 
     _getInputValues() {
@@ -30,5 +30,14 @@ export default class PopupWithForm extends Popup {
     close() {
         super.close();
         this._popupForm.reset();
+    }
+
+    setButtonLoading(loading) {
+        if (loading) {
+            this._buttonText = this._popupSaveButton.textContent;
+            this._popupSaveButton.textContent = 'Я сохраняюсь...';
+        } else {
+            this._popupSaveButton.textContent = this._buttonText;
+        }
     }
 }

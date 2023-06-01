@@ -1,12 +1,15 @@
 .profile__avatar {
-    max-width: 120px;
-    max-height: 120px;
+    width: 120px;
+    height: 120px;
     padding: 0;
+    object-fit: cover;
     margin: 0 30px 0 0;
     border-radius: 50%;
-    display: flex;
-    align-self: flex-start;
     grid-area: avat;
+    position: relative;
+    background-image: url("../../../images/avatar.png");
+    background-position: center;
+    background-size: cover;
 }
 
 @media screen and (max-width: 695px) {
@@ -15,3 +18,25 @@
         margin: 0 auto;
     }
 }
+
+
+.profile__avatar::before {
+    background-image: url("../../../images/avatarEdit.svg");
+    background-color: #000;
+    background-position: center;
+    background-repeat: no-repeat;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.profile__avatar:hover::before {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
