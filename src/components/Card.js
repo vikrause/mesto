@@ -67,13 +67,11 @@ export default class Card {
     }
 
     _setEventListener() {
-        const cardLikeBtn = this._element.querySelector('.card__like');
-        cardLikeBtn.addEventListener('click', () => {
+        this._likeButton.addEventListener('click', () => {
             this._handleCardLike(this._cardData._id)
         });
 
-        const cardRemoveBtn = this._element.querySelector('.card__remove');
-        cardRemoveBtn.addEventListener('click', () => {
+        this._cardRemoveButton.addEventListener('click', () => {
             this._handleCardRemove(this._cardData._id)
         });
 

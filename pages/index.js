@@ -1,4 +1,4 @@
-import './styles/index.css';
+import './index.css';
 
 import {
     validationConfig,
@@ -7,17 +7,17 @@ import {
     profAboutInput,
     profFormElement,
     profAddCardBtn
-} from "./utils/constants.js"
+} from "../src/utils/constants.js"
 
 
-import Card from "./components/Card.js";
-import FormValidator from "./components/FormValidator.js";
-import PopupWithForm from "./components/PopupWithForm.js";
-import UserInfo from "./components/UserInfo.js";
-import PopupWithImage from "./components/PopupWithImage.js";
-import Section from "./components/Section.js";
-import Api from "./components/Api.js";
-import PopupWithConfirm from "./components/PopupWithConfirm.js";
+import Card from "../src/components/Card.js";
+import FormValidator from "../src/components/FormValidator.js";
+import PopupWithForm from "../src/components/PopupWithForm.js";
+import UserInfo from "../src/components/UserInfo.js";
+import PopupWithImage from "../src/components/PopupWithImage.js";
+import Section from "../src/components/Section.js";
+import Api from "../src/components/Api.js";
+import PopupWithConfirm from "../src/components/PopupWithConfirm.js";
 
 
 /*********************************** Валидация форм*****************************************/
@@ -40,6 +40,17 @@ const api = new Api({
 });
 
 let userId;
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+    .then(([userData, cardItems]) => {
+        userId = userData._id;
+        cardSection.renderItems(cardItems.reverse());
+        userInfo.setUserInfo(userData.name, userData.about);
+        userInfo.setAvatar(userData.avatar);
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 /************************************* Попап редактирования профиля***********************************/
 const userInfo = new UserInfo({
     nameSelector: '.profile__name',
@@ -53,14 +64,14 @@ const profilePopup = new PopupWithForm('.popup_profile', (inputValues) => {
     api.setUserInfo(inputValues.name, inputValues.about)
         .then((res) => {
             userInfo.setUserInfo(res.name, res.about);
+            profilePopup.close();
         })
         .catch((err) => {
             console.log(err)
         })
         .finally(() => {
-            profilePopup.close();
+            profilePopup.setButtonLoading(false)
         });
-    profilePopup.setButtonLoading(false)
 });
 profilePopup.setEventListeners();
 
@@ -114,55 +125,36 @@ const createCard = (item) => {
             }
         }
     );
-    return card;
+
+    return card.generateCard();
 }
 
 /************************ Генерация начальных карточек при загрузке станицы**************************/
 
 const cardSection = new Section({
         renderer: (item) => {
-            const cardObject = createCard(item);
-            cardSection.addItem(cardObject.generateCard());
+            const cardElement = createCard(item);
+            cardSection.addItem(cardElement);
         }
     }, '.cards'
 );
 
-document.addEventListener('DOMContentLoaded', function () {
-    api.getInitialCards()
-        .then((res) => {
-            cardSection.renderItems(res.reverse())
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-
-    api.getUserInfo()
-        .then((res) => {
-            userInfo.setUserInfo(res.name, res.about);
-            userInfo.setAvatar(res.avatar);
-            userId = res._id;
-        })
-        .catch((err) => {
-            console.log(err);
-        });
-});
 
 /************************************** Попап добавления карточки ****************************************/
 const addCardPopup = new PopupWithForm('.popup_card-add', (inputValues) => {
     addCardPopup.setButtonLoading(true);
     api.addNewCard(inputValues['placeName-input'], inputValues['placeUrl-input'])
         .then((res) => {
-            const cardObject = createCard(res);
-            cardSection.addItem(cardObject.generateCard());
+            const cardElement = createCard(res);
+            cardSection.addItem(cardElement);
+            addCardPopup.close();
         })
         .catch((err) => {
             console.log(err);
         })
         .finally(() => {
-            addCardPopup.setButtonLoading();
+            addCardPopup.setButtonLoading(false);
         })
-
-    addCardPopup.close(false);
 });
 addCardPopup.setEventListeners();
 
@@ -177,6 +169,7 @@ const removeCardPopup = new PopupWithConfirm('.popup_delete-card', (cardId, card
     api.removeCard(cardId)
         .then(() => {
             card.deleteCard();
+            removeCardPopup.close();
         })
         .catch((err) => {
             console.log(err);
@@ -184,7 +177,6 @@ const removeCardPopup = new PopupWithConfirm('.popup_delete-card', (cardId, card
         .finally(() => {
             removeCardPopup.setButtonLoading(false);
         })
-    removeCardPopup.close();
 });
 
 removeCardPopup.setEventListeners();
